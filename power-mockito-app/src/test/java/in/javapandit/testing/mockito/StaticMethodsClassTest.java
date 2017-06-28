@@ -59,5 +59,17 @@ public class StaticMethodsClassTest {
 		
 		StaticMethodsClass.myStaticMethodCallingOtherStaticWithParam(name);
 	}
-
+	
+	@Test
+	public void testMyStaticMethodCallingOtherStaticWithParamAsValidNameElseRoute() {
+		// Power Mock the Static Class
+		PowerMockito.spy(StaticMethodsClass.class);
+		
+		String name = "ValidName";
+		
+		PowerMockito.doReturn(false).when(StaticMethodsClass.class);
+		StaticMethodsClass.myStaticMethodReturnBoolean(name);
+		
+		StaticMethodsClass.myStaticMethodCallingOtherStaticWithParam(name);
+	}
 }
